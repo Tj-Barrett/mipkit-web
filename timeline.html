@@ -24,8 +24,8 @@
 							<nav id="nav">
 								<ul>
 									<li><a href="index.html">MIPkit</a></li>
-									<li class="current"><a href="polymerization.html">Polymerization</a></li>
-									<li ><a href="timeline.html" > Timeline </a>
+									<li><a href="polymerization.html">Polymerization</a></li>
+                                    <li class="current" ><a href="timeline.html" > Timeline </a>
 										<ul>
 											<li><a href="timeline-acceptors.html">Timeline-Acceptors</a></li>
 											<li><a href="timeline-donors.html">Timeline-Donors</a></li>
@@ -74,7 +74,7 @@
 									};									// Complex Loading
 									function ComplexLoadInit(data) {
 										let complex = glviewer.addAsOneMolecule(data, "pdb");
-										complex.setStyle({stick:{'colorscheme':{'prop':'resi','gradient':'roygb','min':0,'max':5}}})
+										complex.setStyle({stick:{'colorscheme':{'prop':'resi', 'gradient':'roygb','min':-2,'max':5}}})
 										glviewer.zoomTo();
 										glviewer.render();
 										return complex
@@ -82,6 +82,7 @@
 									
 									
 									$(document).ready(function () {
+										var templateplot = 'cartoon'
 										// try {
 										glviewer = $3Dmol.createViewer("gldiv", { defaultcolors: $3Dmol.rasmolElementColors });
 										glviewer.setBackgroundColor(0xffffff);                                        
@@ -92,7 +93,7 @@
                                         for (var i = 0; i < templates.length; i++) {
 											if (templates[i].length > 0) {
 												var m = glviewer.addModel(templates[i], "pdb");
-												m.setStyle({}, { cartoon: { color: "grey" } });
+												m.setStyle({}, { cartoon: { color: "grey", 'opacity':0.75} });
 												m.hide();
 												// templatesurf.hide();
 												templatemodels.push(m);
@@ -104,7 +105,7 @@
                                         for (var i = 0; i < complexes.length; i++) {
 											if (complexes[i].length > 0) {
 												var m = glviewer.addModel(complexes[i], "pdb");
-												m.setStyle({}, {stick:{'colorscheme':{'prop':'resi','gradient':'roygb','min':-2,'max':5}}});
+												m.setStyle({}, {stick:{'colorscheme':{'prop':'resi','gradient':'roygb','min':-2,'max':5}, 'opacity':0.85}});
 												m.hide();
 												complexmodels.push(m);
 											}
@@ -112,8 +113,8 @@
 										
 										var currmol = 0;
                                         var display = function () {
-											complexmodels[currmol].hide();
-											templatemodels[currmol].hide();
+											// complexmodels[currmol].hide();
+											// templatemodels[currmol].hide();
 											currmol = (currmol + 1) % templatemodels.length;
 											complexmodels[currmol].show();
 											templatemodels[currmol].show();
@@ -150,7 +151,6 @@
 												complex = ComplexLoadInit($('#complex').val());
 												glviewer.render();";> -->
 										<input type="button" value="Recenter" id="recen" onclick="glviewer.zoomTo()";></input>
-										<!-- <input type="button" value="Recenter" id="recen" onclick="glviewer.zoomTo()";></input> -->
 										<!-- <form>
 										<label for="speed">Speed:</label>
 										<input type="range" id="speed" name="speed" min="50" max="1000"><br>
@@ -16838,7 +16838,7 @@ ATOM    839  CD  SER B  20      -1.070   1.393 -14.604                       O
 </textarea>
 
 <textarea style="display: none;" id="complex"> 
-	ATOM      0  C   TT7 A   2      -3.398   5.310   5.580                       C
+ATOM      0  C   TT7 A   2      -3.398   5.310   5.580                       C
 ATOM      1  C   TT7 A   2      -3.458   4.090   4.560                       C
 ATOM      2  C   TT7 A   2      -4.168   4.570   3.250                       C
 ATOM      3  N   TT7 A   2      -3.968   2.850   5.150                       N
