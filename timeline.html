@@ -109,7 +109,7 @@
                                         for (var i = 0; i < complexes.length; i++) {
 											if (complexes[i].length > 0) {
 												var m = glviewer.addModel(complexes[i], "pdb");
-												m.setStyle({}, {stick:{'colorscheme':{'prop':'resi','gradient':'roygb','min':-2,'max':5}, 'opacity':0.85}});
+												m.setStyle({}, {stick:{ 'colorscheme':{'prop':'resi','gradient':'roygb','min':-2,'max':5}, 'opacity':0.85}});
 												m.hide();
 												complexmodels.push(m);
 											}
@@ -125,7 +125,7 @@
 											glviewer.render();
                                         };
                                         // setInterval(display, $('#speed').val());
-										setInterval(display, 100);											// glviewer.zoomTo();
+										setInterval(display, 50);											// glviewer.zoomTo();
 										glviewer.render();										// }										// catch (e) {
 										// console.error("Could not instantiate viewer from supplied url: '" + e + "'");
 										}
